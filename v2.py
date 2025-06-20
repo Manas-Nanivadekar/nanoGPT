@@ -138,7 +138,10 @@ class BigramLanguageModel(nn.Module):
         self.token_embedding_table = nn.Embedding(vocab_size, n_embd)
         self.position_embedding_table = nn.Embedding(block_size, n_embd)
         self.blocks = nn.Sequential(
-            Block(n_embd, n_head=4), Block(n_embd, n_head=4), Block(n_embd, n_head=4)
+            Block(n_embd, n_head=4),
+            Block(n_embd, n_head=4),
+            Block(n_embd, n_head=4),
+            nn.LayerNorm(n_embd),
         )
         self.lm_head = nn.Linear(n_embd, vocab_size)
 
